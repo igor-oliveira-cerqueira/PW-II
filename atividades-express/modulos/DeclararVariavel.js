@@ -17,7 +17,8 @@ function calcularVolumeCubo(l) {
 function aprovarNota(nota) {
 
     if (nota >= 7) {
-        return "Aluno aprovado"
+        return true
     }
+    return false
 }
 export{calcularMedia, calcularVolumeCubo, aprovarNota};
