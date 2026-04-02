@@ -1,27 +1,27 @@
 // Seção 1 - Operador "E" (&&)
 function aprovarNota2(nota, frequencia) {
   if (nota >= 7 && frequencia >= 75) {
-    return "Aprovado";
+    return true;
   } else {
-    return "Reprovado";
+    return false;
   }
 }
 
 // Seção 2 - Operador "Ou" (||)
 function verificarEntrada(vip, ingresso) {
   if (vip || ingresso) {
-    return "Entrada liberada";
+    return true;
   } else {
-    return "Entrada negada";
+    return false;
   }
 }
 
 // Seção 3 - Operador "Not" (!)
 function verificarBloqueio(estaBloqueado) {
   if (!estaBloqueado) {
-    return "Acesso permitido";
+    return true;
   } else {
-    return "Acesso negado";
+    return false;
   }
 }
 
