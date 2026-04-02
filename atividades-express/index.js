@@ -8,9 +8,10 @@ import { calcularCompra, calcularIdade, calcularVolumeLata, calcularRaiz, conver
 import { aprovarNota2, verificarEntrada, verificarBloqueio } from "./modulos/OperadoresLogicos.js";
 import { maiorQueDez, menorQueCinco, maiorOuIgualSete, menorOuIgualVinte, verificarSenha, verificarNumeroDiferenteZero } from "./modulos/OperadoresRelacionais.js";
 import { somarVetor, removerPrimeiraUltimaPontuacao, encontrarValorVetor, calcularLucroVendaPorDia } from "./modulos/Vetores.js";
-import e from 'express';
 
 const app = express();
+
+app.use(express.json());
 
 app.listen(4000, () => {
     console.log('Servidor rodando na porta 4000');
