@@ -8,12 +8,15 @@ import { calcularCompra, calcularIdade, calcularVolumeLata, calcularRaiz, conver
 import { aprovarNota2, verificarEntrada, verificarBloqueio } from "./modulos/OperadoresLogicos.js";
 import { maiorQueDez, menorQueCinco, maiorOuIgualSete, menorOuIgualVinte, verificarSenha, verificarNumeroDiferenteZero } from "./modulos/OperadoresRelacionais.js";
 import { somarVetor, removerPrimeiraUltimaPontuacao, encontrarValorVetor, calcularLucroVendaPorDia } from "./modulos/Vetores.js";
+import e from 'express';
 
 const app = express();
 
 app.listen(4000, () => {
     console.log('Servidor rodando na porta 4000');
 });
+
+app.use(express.json());
 
 // Seção 1 - Declarar Variável
 // Calculo da nota
@@ -22,7 +25,11 @@ app.get('/declarar-variavel/calculo-nota', (req, res) => {
     let nota2 = 6;
     let res1 = calcularMedia(nota1, nota2);
 
-    res.send("Calculo da nota " + "Notas informadas: " + nota1 + " e " + nota2 + " " + "A média do aluno é " + res1);
+    let exibirMedia = {
+        'media' : res1
+    };
+
+    res.send(exibirMedia);
 });
 
 // Calcular Volume do Cubo
@@ -30,7 +37,11 @@ app.get('/declarar-variavel/calculo-volume-cubo', (req, res) => {
     let l = 7;
     let res2 = calcularVolumeCubo(l);
 
-    res.send("Calcular Volume do Cubo " + "Lado do cubo informado: " + l + " " + "O volume do cubo é " + res2);
+    let exibirVolumeCubo = {
+        'volume' : res2
+    }
+
+    res.send(exibirVolumeCubo);
 });
 
 // Aprovação nota
@@ -38,32 +49,48 @@ app.get('/declarar-variavel/aprovacao-nota', (req, res) => {
     let nota = 8;
     let aprovar = aprovarNota(nota);
 
-    res.send("Aprovação nota " + "Nota informada: " + nota + " " + aprovar);
+    let exibirAprovacao = {
+        'status' : aprovar
+    }
+
+    res.send(exibirAprovacao);
 });
 
 //Seção 2 - Estruturas Condicionais
 // Verificar se o numero é multiplo de cinco
 app.get('/estrutura-condicional/multiplo-de-cinco', (req, res) => {
     let numero = 25;
-    let verificador = verificarMultiploDeCinco(numero);
+    let resp = verificarMultiploDeCinco(numero);
 
-    res.send("Verificar se o numero é multiplo de cinco " + "Número informado: " + numero + " " + verificador);
+    let exibirSeMultiploDeCinco = {
+        'multiplo' : resp
+    }
+
+    res.send(exibirSeMultiploDeCinco);
 });
 
 // verificar se é maior ou menor de idade
 app.get('/estrutura-condicional/idade', (req, res) => {
     let idade = 16;
-    let verifica = verificarIdadeMaisDezoito(idade);
+    let resp = verificarIdadeMaisDezoito(idade);
 
-    res.send("Verificar se é maior ou menor de idade " + "Idade informada: " + idade + " " + verifica);
+    let exibirCondicao = {
+        'status' : resp
+    }
+
+    res.send(exibirCondicao);
 });
 
 //Verificar se um numero é positivo negativo ou neutro
 app.get('/estrutura-condicional/sinal-numero', (req, res) => {
     let numInt = 15;
-    let verficadorSinal = verificarSinalNumero(numInt);
+    let resp = verificarSinalNumero(numInt);
 
-    res.send("Verificar se um numero é positivo negativo ou neutro " + "Número informado: " + numInt + " " + verficadorSinal);
+    let exibirSinalNumero = {
+        'sinal' : resp
+    }
+
+    res.send(exibirSinalNumero);
 });
 
 // verificar se o numero é impar ou par
@@ -71,7 +98,11 @@ app.get('/estrutura-condicional/impar-ou-par', (req, res) => {
     let num = 10;
     let resposta = verificarImparOuPar(num);
 
-    res.send("Verificar se o numero é impar ou par " + "Número informado: " + num + " " + resposta);
+    let exibirImparOuPar = {
+        'numero' : resposta
+    }
+
+    res.send(exibirImparOuPar);
 });
 
 // verificar em qual numero do dia termina o mês
@@ -79,7 +110,11 @@ app.get('/estrutura-condicional/termino-mes', (req, res) => {
     let mes = 10;
     let resMes = verificarTerminoMes(mes);
 
-    res.send("Verificar em qual numero do dia termina o mês " + "Número do mês informado: " + mes + " " + resMes);
+    let exibirTerminoMes = {
+        'termino' : resMes
+    }
+
+    res.send(exibirTerminoMes);
 });
 
 //Seção 3 - Laços de Repetição
@@ -87,21 +122,33 @@ app.get('/estrutura-condicional/termino-mes', (req, res) => {
 app.get('/laco-repeticao/contagem-cem-while', (req, res) => {
     let resultado = contagemCemWhile();
 
-    res.send("Contar de 1 a 100 usando while " + "Resultados: " + resultado.join(", "));
+    let exibirContagem = {
+        'contagem' : resultado
+    }
+
+    res.send(exibirContagem);
 });
 
 // Sequencia de Fibonacci usando Do While
 app.get('/laco-repeticao/sequencia-fibonacci', (req, res) => {
     let resultado = sequenciarFibonacci();
 
-    res.send("Sequência de Fibonacci usando Do While " + "Resultados: " + resultado.join(", "));
+    let exibirFibonacci = {
+        'sequencia' : resultado
+    }
+
+    res.send(exibirFibonacci);
 });
 
 // Contar de 1 a 100 usando For
 app.get('/laco-repeticao/contagem-cem-for', (req, res) => {
     let resultado = contagemCemFor();
 
-    res.send("Contar de 1 a 100 usando For " + "Resultados: " + resultado.join(", "));
+    let exibirContagemCem = {
+        'contagem' : resultado
+    }
+
+    res.send(exibirContagemCem);
 });
 
 // Exibir pessoas usando ForEach
@@ -112,7 +159,11 @@ app.get('/laco-repeticao/exibir-pessoas', (req, res) => {
     const pessoa4 = "Ana"
     let resultado = exibirPessoas(pessoa1, pessoa2, pessoa3, pessoa4);
 
-    res.send("Exibir pessoas usando ForEach " + "Resultados: " + resultado.join(", "));
+    let exibirListaPessoas = {
+        'lista' : resultado
+    }
+
+    res.send(exibirListaPessoas);
 });
 
 // Seção 4 - Operadores Aritméticos
@@ -123,7 +174,11 @@ app.get('/operadores-aritmeticos/calculo-compra', (req, res) => {
     let carne = 40.59
     let resultado = calcularCompra(tomate, alface, carne);
 
-    res.send("Calculo da compra usando operador de adição \"+\" " + "Valores informados - Tomate: " + tomate + ", Alface: " + alface + ", Carne: " + carne + " " + resultado);
+    let exibirCompra = {
+        'compra' : resultado
+    }
+
+    res.send(exibirCompra);
 });
 
 // Calculo da idade usando operador de subtração "-"
@@ -132,7 +187,11 @@ app.get('/operadores-aritmeticos/calculo-idade', (req, res) => {
     let anoAtual = 2024
     let resultado = calcularIdade(anoNasc, anoAtual);
 
-    res.send("Calculo da idade usando operador de subtração \"-\" " + "Valores informados - Ano de nascimento: " + anoNasc + ", Ano atual: " + anoAtual + " " + resultado);
+    let exibirIdade = {
+        'idade' : resultado
+    }
+
+    res.send(exibirIdade);
 });
 
 // Calculo do volume da lata usando operador de multiplicação "*"
@@ -141,7 +200,11 @@ app.get('/operadores-aritmeticos/calculo-volume-lata', (req, res) => {
     let h = 10
     let resultado = calcularVolumeLata(r, h);
 
-    res.send("Calculo do volume da lata usando operador de multiplicação \"*\" " + "Valores informados - Raio: " + r + ", Altura: " + h + " " + resultado);
+    let exibirVolumeLata = {
+        'volume' : resultado
+    }
+
+    res.send(exibirVolumeLata);
 });
 
 // Calculo da raiz usando operador de raiz "Math.sqrt()"
@@ -149,7 +212,11 @@ app.get('/operadores-aritmeticos/calculo-raiz', (req, res) => {
     let num2 = 25
     let resultado = calcularRaiz(num2);
 
-    res.send("Calculo da raiz usando operador de raiz \"Math.sqrt()\" " + "Número informado: " + num2 + " " + resultado);
+    let exibirRaiz = {
+        'raiz' : resultado
+    }
+
+    res.send(exibirRaiz);
 });
 
 // Calculo de conversão de dias usando operador de divisão "/"
@@ -157,7 +224,11 @@ app.get('/operadores-aritmeticos/conversao-dias', (req, res) => {
     let dias = 365
     let resultado = converterDias(dias);
 
-    res.send("Calculo de conversão de dias usando operador de divisão \"/\" " + "Número de dias informado: " + dias + " " + resultado);
+    let exibirConversaoDias = {
+        'conversao' : resultado
+    }
+
+    res.send(exibirConversaoDias);
 });
 
 // Calculo de potenciação usando operador de potenciação "**"
@@ -165,8 +236,12 @@ app.get('/operadores-aritmeticos/calculo-potencia', (req, res) => {
     let base = 2
     let expoente = 3
     let resultado = calcularPotencia(base, expoente);
+    
+    let exibirPotencia = {
+        'potencia' : resultado
+    }
 
-    res.send("Calculo de potenciação usando operador de potenciação \"**\" " + "Valores informados - Base: " + base + ", Expoente: " + expoente + " " + resultado);
+    res.send(exibirPotencia);
 });
 
 // Calculo de anos bissextos usando operador de resto "%"
@@ -175,7 +250,11 @@ app.get('/operadores-aritmeticos/calculo-ano-bissexto', (req, res) => {
     let anoAlvo = 2026
     let resultado = calcularAnoBissexto(anoInicial, anoAlvo);
 
-    res.send("Calculo de anos bissextos usando operador de resto \"%\" " + "Valores informados - Ano inicial: " + anoInicial + ", Ano alvo: " + anoAlvo + " " + resultado);
+    let exibirAnosBissextos = {
+        'resultado' : resultado
+    }
+
+    res.send(exibirAnosBissextos);
 });
 
 // Seção 5 - Operadores Lógicos
@@ -185,7 +264,11 @@ app.get('/operadores-logicos/aprovacao-nota', (req, res) => {
     let frequencia = 80;
     let resultado = aprovarNota2(nota3, frequencia);
 
-    res.send("Verificar aprovação usando operador lógico \"E\" (&&) " + "Valores informados - Nota: " + nota3 + ", Frequência: " + frequencia + " " + resultado);
+    let exibirAprovacaoNota = {
+        'status' : resultado 
+    }
+
+    res.send(exibirAprovacaoNota);
 });
 
 // Verificar entrada usando operador lógico "Ou" (||)
@@ -194,7 +277,11 @@ app.get('/operadores-logicos/verificar-entrada', (req, res) => {
     let ingresso = true;
     let resultado = verificarEntrada(vip, ingresso);
 
-    res.send("Verificar entrada usando operador lógico \"Ou\" (||) " + "Valores informados - VIP: " + vip + ", Ingresso: " + ingresso + " " + resultado);
+    let exibirEntrada = {
+        'status' : resultado
+    }
+
+    res.send(exibirEntrada);
 });
 
 // Verificar bloqueio usando operador lógico "Not" (!)
@@ -202,7 +289,11 @@ app.get('/operadores-logicos/verificar-bloqueio', (req, res) => {
     let estaBloqueado = false;
     let resultado = verificarBloqueio(estaBloqueado);
 
-    res.send("Verificar bloqueio usando operador lógico \"Not\" (!) " + "Valores informados - Está bloqueado: " + estaBloqueado + " " + resultado);
+    let exibirBloqueio = {
+        'status' : resultado
+    }
+
+    res.send(exibirBloqueio);
 });
 
 // Seção 6 - Operadores Relacionais
@@ -211,7 +302,11 @@ app.get('/operadores-relacionais/maior-que-dez', (req, res) => {
     let num3 = 15
     let resultado = maiorQueDez(num3);
 
-    res.send("Verificar se um numero é maior dez usando operador \">\" " + "Valores informados - Número: " + num3 + " " + resultado);
+    let exibirMaiorQueDez = {
+        'maior que dez' : resultado
+    }
+
+    res.send(exibirMaiorQueDez);
 });
 
 // Verificar se um numero é menor cinco usando operador "<"
@@ -219,7 +314,10 @@ app.get('/operadores-relacionais/menor-que-cinco', (req, res) => {
     let num4 = 3
     let resultado = menorQueCinco(num4);
 
-    res.send("Verificar se um numero é menor cinco usando operador \"<\" " + "Valores informados - Número: " + num4 + " " + resultado);
+    let exibirMenorQueCinco = {
+        'menor que cinco' : resultado
+    }
+    res.send(exibirMenorQueCinco);
 });
 
 // Verificar se uma nota é maior ou igual a sete usando operador ">="
@@ -227,7 +325,11 @@ app.get('/operadores-relacionais/maior-ou-igual-sete', (req, res) => {
     let nota4 = 7
     let resultado = maiorOuIgualSete(nota4);
 
-    res.send("Verificar se uma nota é maior ou igual a sete usando operador \">=\" " + "Valores informados - Nota: " + nota4 + " " + resultado);
+    let exibirMaiorOuIgualSete = {
+        'maior ou igual a sete' : resultado
+    }
+
+    res.send(exibirMaiorOuIgualSete);
 });
 
 // Verificar se uma temperatura é menor ou igual a vinte usando operador "<="
@@ -235,7 +337,11 @@ app.get('/operadores-relacionais/menor-ou-igual-vinte', (req, res) => {
     let temperatura = 18
     let resultado = menorOuIgualVinte(temperatura);
 
-    res.send("Verificar se uma temperatura é menor ou igual a vinte usando operador \"<=\" " + "Valores informados - Temperatura: " + temperatura + " " + resultado);
+    let exibirMenorOuIgualVinte = {
+        'menor ou igual a vinte' : resultado
+    }
+
+    res.send(exibirMenorOuIgualVinte);
 });
 
 // Verificar se uma senha está correta usando operador "=="
@@ -243,7 +349,11 @@ app.get('/operadores-relacionais/verificar-senha', (req, res) => {
     let senha = 1234
     let resultado = verificarSenha(senha);
 
-    res.send("Verificar se uma senha está correta usando operador \"==\" " + "Valores informados - Senha: " + senha + " " + resultado);
+    let validarSenha = {
+        'validação' : resultado 
+    }
+
+    res.send(validarSenha);
 });
 
 // Verificar se um numero é diferente de zero usando operador "!=="
@@ -251,7 +361,11 @@ app.get('/operadores-relacionais/verificar-numero-diferente-zero', (req, res) =>
     let num5 = 5
     let resultado = verificarNumeroDiferenteZero(num5);
 
-    res.send("Verificar se um numero é diferente de zero usando operador \"!==\" " + "Valores informados - Número: " + num5 + " " + resultado);
+    let exibirNumeroDiferenteZero = {
+        'numero' : resultado
+    }
+
+    res.send(exibirNumeroDiferenteZero);
 });
 
 // Seção 7 - Vetores
@@ -262,7 +376,13 @@ app.get('/vetores/somar-vetor', (req, res) => {
     let b = [2,3,4,5,6,7,8,9,10,11]
     let resultado = somarVetor(a, b, TAM);
 
-    res.send("Somar os elementos de um vetor usando operador de soma \"+\" " + "Valores informados - Vetor A: " + a + ", Vetor B: " + b + " " + resultado);
+    let realizarSomatoria = {
+        'A' : a,
+        'B' : b,
+        'somatoria' : resultado
+    }
+
+    res.send(realizarSomatoria);
 });
 
 // Remover a primeira e última pontuação de um vetor usando "shift()" e "pop()"
@@ -270,16 +390,25 @@ app.get('/vetores/remover-pontuacao', (req, res) => {
     let pontuacoes = [10, 8, 9, 7, 6]
     let resultado = removerPrimeiraUltimaPontuacao(pontuacoes);
 
-    res.send("Remover a primeira e última pontuação de um vetor usando \"shift()\" e \"pop()\" " + "Valores informados - Pontuações: " + pontuacoes + " " + resultado);
+    let retirarPontuacao = {
+        'pontuação original' : pontuacoes,
+        'pontuação após remoção' : resultado
+    }
+
+    res.send(retirarPontuacao);
 });
 
-// Encontrar um valor em um vetor usando
+// Encontrar um valor em um vetor
 app.get('/vetores/encontrar-valor', (req, res) => {
     let numeros = [1, 2, 3, 4, 5]
     let valor = 3
     let resultado = encontrarValorVetor(numeros, valor);
 
-    res.send("Encontrar um valor em um vetor usando operador \"===\" " + "Valores informados - Vetor: " + numeros + ", Valor: " + valor + " " + resultado);
+    let procurarValor = {
+        'valor encontrado' : resultado
+    }
+
+    res.send(procurarValor);
 });
 
 // Calcular o lucro acumulado de vendas por dia
@@ -287,7 +416,12 @@ app.get('/vetores/calcular-lucro-venda', (req, res) => {
     let lucroDia = [10, 20, 15, 5, 25]
     let resultado = calcularLucroVendaPorDia(lucroDia);
 
-    res.send("Calcular o lucro acumulado de vendas por dia usando operador de soma \"+\" " + "Valores informados - Lucro por dia: " + lucroDia + " " + resultado);
+    let exibirLucro = {
+        'lucro por dia' : lucroDia,
+        'lucro total' : resultado
+    }
+
+    res.send(exibirLucro);
 });
 
 // logs
@@ -331,11 +465,3 @@ console.log("http://localhost:4000/vetores/somar-vetor");
 console.log("http://localhost:4000/vetores/remover-pontuacao");
 console.log("http://localhost:4000/vetores/encontrar-valor");
 console.log("http://localhost:4000/vetores/calcular-lucro-venda");
-
-let dados = {
-    'nome' : 'Everson',
-    'sobrenome' : 'Bacelli',
-    'profissao' : 'Professor'
-}
-
-console.log(dados);
