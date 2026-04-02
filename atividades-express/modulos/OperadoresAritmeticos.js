@@ -3,32 +3,32 @@ function calcularCompra(tomate, alface, carne) {
 
     let total = tomate + alface + carne
 
-    return ("Sua compra deu um total de " + total)
+    return total
 }
 
 //Seção 2 - CalculoIdade (Operação com "-")
 function calcularIdade(anoNasc, anoAtual) {
     let idade = anoAtual - anoNasc
-    return ("Sua idade é " + idade)
+    return idade
 }
 
 //Seção 3 - VolumeLata (Operação com "*")
 function calcularVolumeLata(r, h) {
     let pi = 3.14
     let v = pi * (r * r) * h
-    return ("O volume da lata é: " + v)
+    return v
 }
 //Seção 4 - CalculoRaiz (operação com Raiz "Math.sqrt()") 
 function calcularRaiz(numero) {
     let raiz = Math.sqrt(numero)
-    return ("A raiz de " + numero + " é " + raiz)
+    return raiz
 }
 
 //Seção 5 - ConversaoDias (Calculo com divisão "/")
 function converterDias(dias) {
     let mes = dias / 30
     let ano = mes / 12
-    return ("Meses totais:" + mes + ", Anos:" + ano)
+    return {"mes": mes, "ano": ano}
 }
 
 //Seção 6- NumeroExpoente (calculo com potenciação)
@@ -41,7 +41,7 @@ function calcularPotencia(base, expoente) {
         i++;
     } while (i < expoente)
 
-    return (base + " elevado a " + expoente + " é: " + resultado)
+    return resultado
 }
 
 //Seção 7- AnoBissextos (Calculo com "%")
@@ -56,7 +56,7 @@ function calcularAnoBissexto(anoInicial, anoAlvo) {
         anoContemporaneo++
     }
 
-    return ("Anos bissextos entre " + anoInicial + " e " + anoAlvo + ": " + listaBissextos.join(", "))
+    return listaBissextos
 }
 
 export { calcularCompra, calcularIdade, calcularVolumeLata, calcularRaiz, converterDias, calcularPotencia, calcularAnoBissexto }
