@@ -2,30 +2,30 @@
 function verificarMultiploDeCinco(numero) {
 
     if (numero % 5 === 0) {
-        return "O número é múltiplo de 5"
+        return true
     }
+    return false
 }
 
 //Seção 2 - VerificacaoIdade (If Tradicional)
 function verificarIdadeMaisDezoito(idade) {
 
     if (idade >= 18) {
-        return "Maior de idade"
+        return true
     } else {
-        return "Menor de idade"
+        return false
     }
 }
 
 //Seção 3 - SinalNumero (If Composto)
 
 function verificarSinalNumero(numInt) {
-
     if (numInt > 0) {
-        return "positivo"
+        return "+"
     } else if (numInt < 0) {
-        return "negativo"
+        return "-"
     } else {
-        return "neutro"
+        return 0
     }
 }
 
@@ -45,20 +45,20 @@ function verificarTerminoMes(mes) {
         case 7:
         case 9:
         case 11:
-            return "O mês termina com 31";
+            return 31;
             break
         case 4:
         case 6:
         case 8:
         case 10:
         case 12:
-            return "O mês termina com 30"
+            return 30;
             break
         case 2:
-            return "O mês termina com 28"
+            return 28;
             break
         default:
-            return "Inválido"
+            return null
     }
 }
 
