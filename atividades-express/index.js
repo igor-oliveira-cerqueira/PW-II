@@ -8,10 +8,9 @@ import { calcularCompra, calcularIdade, calcularVolumeLata, calcularRaiz, conver
 import { aprovarNota2, verificarEntrada, verificarBloqueio } from "./modulos/OperadoresLogicos.js";
 import { maiorQueDez, menorQueCinco, maiorOuIgualSete, menorOuIgualVinte, verificarSenha, verificarNumeroDiferenteZero } from "./modulos/OperadoresRelacionais.js";
 import { somarVetor, removerPrimeiraUltimaPontuacao, encontrarValorVetor, calcularLucroVendaPorDia } from "./modulos/Vetores.js";
+import e from 'express';
 
 const app = express();
-
-app.use(express.json());
 
 app.listen(4000, () => {
     console.log('Servidor rodando na porta 4000');
@@ -30,7 +29,7 @@ app.get('/declarar-variavel/calculo-nota', (req, res) => {
         'media' : res1
     };
 
-    res.send(exibirMedia);
+    res.json(exibirMedia);
 });
 
 // Calcular Volume do Cubo
@@ -42,7 +41,7 @@ app.get('/declarar-variavel/calculo-volume-cubo', (req, res) => {
         'volume' : res2
     }
 
-    res.send(exibirVolumeCubo);
+    res.json(exibirVolumeCubo);
 });
 
 // Aprovação nota
@@ -51,10 +50,10 @@ app.get('/declarar-variavel/aprovacao-nota', (req, res) => {
     let aprovar = aprovarNota(nota);
 
     let exibirAprovacao = {
-        'status' : aprovar
+        'aprovado' : aprovar
     }
 
-    res.send(exibirAprovacao);
+    res.json(exibirAprovacao);
 });
 
 //Seção 2 - Estruturas Condicionais
@@ -67,7 +66,7 @@ app.get('/estrutura-condicional/multiplo-de-cinco', (req, res) => {
         'multiplo' : resp
     }
 
-    res.send(exibirSeMultiploDeCinco);
+    res.json(exibirSeMultiploDeCinco);
 });
 
 // verificar se é maior ou menor de idade
@@ -76,10 +75,10 @@ app.get('/estrutura-condicional/idade', (req, res) => {
     let resp = verificarIdadeMaisDezoito(idade);
 
     let exibirCondicao = {
-        'status' : resp
+        'maior_de_idade' : resp
     }
 
-    res.send(exibirCondicao);
+    res.json(exibirCondicao);
 });
 
 //Verificar se um numero é positivo negativo ou neutro
@@ -91,7 +90,7 @@ app.get('/estrutura-condicional/sinal-numero', (req, res) => {
         'sinal' : resp
     }
 
-    res.send(exibirSinalNumero);
+    res.json(exibirSinalNumero);
 });
 
 // verificar se o numero é impar ou par
@@ -100,10 +99,10 @@ app.get('/estrutura-condicional/impar-ou-par', (req, res) => {
     let resposta = verificarImparOuPar(num);
 
     let exibirImparOuPar = {
-        'numero' : resposta
+        'tipo' : resposta
     }
 
-    res.send(exibirImparOuPar);
+    res.json(exibirImparOuPar);
 });
 
 // verificar em qual numero do dia termina o mês
@@ -115,7 +114,7 @@ app.get('/estrutura-condicional/termino-mes', (req, res) => {
         'termino' : resMes
     }
 
-    res.send(exibirTerminoMes);
+    res.json(exibirTerminoMes);
 });
 
 //Seção 3 - Laços de Repetição
@@ -127,7 +126,7 @@ app.get('/laco-repeticao/contagem-cem-while', (req, res) => {
         'contagem' : resultado
     }
 
-    res.send(exibirContagem);
+    res.json(exibirContagem);
 });
 
 // Sequencia de Fibonacci usando Do While
@@ -138,7 +137,7 @@ app.get('/laco-repeticao/sequencia-fibonacci', (req, res) => {
         'sequencia' : resultado
     }
 
-    res.send(exibirFibonacci);
+    res.json(exibirFibonacci);
 });
 
 // Contar de 1 a 100 usando For
@@ -149,7 +148,7 @@ app.get('/laco-repeticao/contagem-cem-for', (req, res) => {
         'contagem' : resultado
     }
 
-    res.send(exibirContagemCem);
+    res.json(exibirContagemCem);
 });
 
 // Exibir pessoas usando ForEach
@@ -164,7 +163,7 @@ app.get('/laco-repeticao/exibir-pessoas', (req, res) => {
         'lista' : resultado
     }
 
-    res.send(exibirListaPessoas);
+    res.json(exibirListaPessoas);
 });
 
 // Seção 4 - Operadores Aritméticos
@@ -179,7 +178,7 @@ app.get('/operadores-aritmeticos/calculo-compra', (req, res) => {
         'compra' : resultado
     }
 
-    res.send(exibirCompra);
+    res.json(exibirCompra);
 });
 
 // Calculo da idade usando operador de subtração "-"
@@ -192,7 +191,7 @@ app.get('/operadores-aritmeticos/calculo-idade', (req, res) => {
         'idade' : resultado
     }
 
-    res.send(exibirIdade);
+    res.json(exibirIdade);
 });
 
 // Calculo do volume da lata usando operador de multiplicação "*"
@@ -205,7 +204,7 @@ app.get('/operadores-aritmeticos/calculo-volume-lata', (req, res) => {
         'volume' : resultado
     }
 
-    res.send(exibirVolumeLata);
+    res.json(exibirVolumeLata);
 });
 
 // Calculo da raiz usando operador de raiz "Math.sqrt()"
@@ -217,7 +216,7 @@ app.get('/operadores-aritmeticos/calculo-raiz', (req, res) => {
         'raiz' : resultado
     }
 
-    res.send(exibirRaiz);
+    res.json(exibirRaiz);
 });
 
 // Calculo de conversão de dias usando operador de divisão "/"
@@ -225,11 +224,7 @@ app.get('/operadores-aritmeticos/conversao-dias', (req, res) => {
     let dias = 365
     let resultado = converterDias(dias);
 
-    let exibirConversaoDias = {
-        'conversao' : resultado
-    }
-
-    res.send(exibirConversaoDias);
+    res.json(resultado);
 });
 
 // Calculo de potenciação usando operador de potenciação "**"
@@ -242,7 +237,7 @@ app.get('/operadores-aritmeticos/calculo-potencia', (req, res) => {
         'potencia' : resultado
     }
 
-    res.send(exibirPotencia);
+    res.json(exibirPotencia);
 });
 
 // Calculo de anos bissextos usando operador de resto "%"
@@ -255,7 +250,7 @@ app.get('/operadores-aritmeticos/calculo-ano-bissexto', (req, res) => {
         'resultado' : resultado
     }
 
-    res.send(exibirAnosBissextos);
+    res.json(exibirAnosBissextos);
 });
 
 // Seção 5 - Operadores Lógicos
@@ -266,10 +261,10 @@ app.get('/operadores-logicos/aprovacao-nota', (req, res) => {
     let resultado = aprovarNota2(nota3, frequencia);
 
     let exibirAprovacaoNota = {
-        'status' : resultado 
+        'aprovado' : resultado 
     }
 
-    res.send(exibirAprovacaoNota);
+    res.json(exibirAprovacaoNota);
 });
 
 // Verificar entrada usando operador lógico "Ou" (||)
@@ -279,10 +274,10 @@ app.get('/operadores-logicos/verificar-entrada', (req, res) => {
     let resultado = verificarEntrada(vip, ingresso);
 
     let exibirEntrada = {
-        'status' : resultado
+        'entrada' : resultado
     }
 
-    res.send(exibirEntrada);
+    res.json(exibirEntrada);
 });
 
 // Verificar bloqueio usando operador lógico "Not" (!)
@@ -294,7 +289,7 @@ app.get('/operadores-logicos/verificar-bloqueio', (req, res) => {
         'status' : resultado
     }
 
-    res.send(exibirBloqueio);
+    res.json(exibirBloqueio);
 });
 
 // Seção 6 - Operadores Relacionais
@@ -307,7 +302,7 @@ app.get('/operadores-relacionais/maior-que-dez', (req, res) => {
         'maior que dez' : resultado
     }
 
-    res.send(exibirMaiorQueDez);
+    res.json(exibirMaiorQueDez);
 });
 
 // Verificar se um numero é menor cinco usando operador "<"
@@ -318,7 +313,7 @@ app.get('/operadores-relacionais/menor-que-cinco', (req, res) => {
     let exibirMenorQueCinco = {
         'menor que cinco' : resultado
     }
-    res.send(exibirMenorQueCinco);
+    res.json(exibirMenorQueCinco);
 });
 
 // Verificar se uma nota é maior ou igual a sete usando operador ">="
@@ -330,7 +325,7 @@ app.get('/operadores-relacionais/maior-ou-igual-sete', (req, res) => {
         'maior ou igual a sete' : resultado
     }
 
-    res.send(exibirMaiorOuIgualSete);
+    res.json(exibirMaiorOuIgualSete);
 });
 
 // Verificar se uma temperatura é menor ou igual a vinte usando operador "<="
@@ -342,7 +337,7 @@ app.get('/operadores-relacionais/menor-ou-igual-vinte', (req, res) => {
         'menor ou igual a vinte' : resultado
     }
 
-    res.send(exibirMenorOuIgualVinte);
+    res.json(exibirMenorOuIgualVinte);
 });
 
 // Verificar se uma senha está correta usando operador "=="
@@ -354,7 +349,7 @@ app.get('/operadores-relacionais/verificar-senha', (req, res) => {
         'validação' : resultado 
     }
 
-    res.send(validarSenha);
+    res.json(validarSenha);
 });
 
 // Verificar se um numero é diferente de zero usando operador "!=="
@@ -366,7 +361,7 @@ app.get('/operadores-relacionais/verificar-numero-diferente-zero', (req, res) =>
         'numero' : resultado
     }
 
-    res.send(exibirNumeroDiferenteZero);
+    res.json(exibirNumeroDiferenteZero);
 });
 
 // Seção 7 - Vetores
@@ -383,7 +378,7 @@ app.get('/vetores/somar-vetor', (req, res) => {
         'somatoria' : resultado
     }
 
-    res.send(realizarSomatoria);
+    res.json(realizarSomatoria);
 });
 
 // Remover a primeira e última pontuação de um vetor usando "shift()" e "pop()"
@@ -396,7 +391,7 @@ app.get('/vetores/remover-pontuacao', (req, res) => {
         'pontuação após remoção' : resultado
     }
 
-    res.send(retirarPontuacao);
+    res.json(retirarPontuacao);
 });
 
 // Encontrar um valor em um vetor
@@ -409,7 +404,7 @@ app.get('/vetores/encontrar-valor', (req, res) => {
         'valor encontrado' : resultado
     }
 
-    res.send(procurarValor);
+    res.json(procurarValor);
 });
 
 // Calcular o lucro acumulado de vendas por dia
@@ -422,7 +417,7 @@ app.get('/vetores/calcular-lucro-venda', (req, res) => {
         'lucro total' : resultado
     }
 
-    res.send(exibirLucro);
+    res.json(exibirLucro);
 });
 
 // logs
