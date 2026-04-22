@@ -2,7 +2,7 @@
 export function maiorQueDez(num) {
     let resultado;
 
-    if (num > 10) {
+    if (Number(num) > 10) {
         resultado = true;
     } else {
         resultado = false;
@@ -14,7 +14,7 @@ export function maiorQueDez(num) {
 export function menorQueCinco(num) {
     let resultado;
 
-    if (num < 5) {
+    if (Number(num) < 5) {
         resultado = true;
     } else {
         resultado = false;
@@ -26,7 +26,7 @@ export function menorQueCinco(num) {
 export function maiorOuIgualSete(nota) {
     let resultado;
 
-    if (nota >= 7) {
+    if (Number(nota) >= 7) {
         resultado = true;
     } else {
         resultado = false;
@@ -38,7 +38,7 @@ export function maiorOuIgualSete(nota) {
 export function menorOuIgualVinte(temperatura) {
     let resultado;
 
-    if (temperatura <= 20) {
+    if (Number(temperatura) <= 20) {
         resultado = true;
     } else {
         resultado = false;
@@ -63,7 +63,7 @@ export function verificarSenha(senha) {
 export function verificarNumeroDiferenteZero(num) {
     let resultado;
 
-    if (num !== 0) {
+    if (Number(num) !== 0) {
         resultado = true;
     } else {
         resultado = false;
