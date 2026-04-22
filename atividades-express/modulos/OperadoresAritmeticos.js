@@ -1,33 +1,33 @@
 //Seção 1 - CalculoCompra (Operação com "+")
 function calcularCompra(tomate, alface, carne) {
 
-    let total = tomate + alface + carne
+    let total = Number(tomate) + Number(alface) + Number(carne);
 
     return total
 }
 
 //Seção 2 - CalculoIdade (Operação com "-")
 function calcularIdade(anoNasc, anoAtual) {
-    let idade = anoAtual - anoNasc
+    let idade = Number(anoAtual) - Number(anoNasc);
     return idade
 }
 
 //Seção 3 - VolumeLata (Operação com "*")
 function calcularVolumeLata(r, h) {
     let pi = 3.14
-    let v = pi * (r * r) * h
+    let v = pi * (Number(r) * Number(r)) * Number(h)
     return v
 }
 //Seção 4 - CalculoRaiz (operação com Raiz "Math.sqrt()") 
 function calcularRaiz(numero) {
-    let raiz = Math.sqrt(numero)
+    let raiz = Math.sqrt(Number(numero))
     return raiz
 }
 
 //Seção 5 - ConversaoDias (Calculo com divisão "/")
 function converterDias(dias) {
-    let mes = dias / 30
-    let ano = mes / 12
+    let mes = Number(dias) / 30
+    let ano = Number(mes) / 12
     return {"mes": mes, "ano": ano}
 }
 
@@ -37,19 +37,19 @@ function calcularPotencia(base, expoente) {
     let i = 0
 
     do {
-        resultado *= base
+        resultado *= Number(base)
         i++;
-    } while (i < expoente)
+    } while (i < Number(expoente))
 
     return resultado
 }
 
 //Seção 7- AnoBissextos (Calculo com "%")
 function calcularAnoBissexto(anoInicial, anoAlvo) {
-    let anoContemporaneo = anoInicial
+    let anoContemporaneo = Number(anoInicial)
     let listaBissextos = []
 
-    while (anoContemporaneo <= anoAlvo) {
+    while (anoContemporaneo <= Number(anoAlvo)) {
         if (anoContemporaneo % 4 == 0) {
             listaBissextos.push(anoContemporaneo)
         }
