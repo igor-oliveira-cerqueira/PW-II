@@ -1,7 +1,7 @@
 // Seção 1 - MultiploDeCinco (If Simples)
 function verificarMultiploDeCinco(numero) {
 
-    if (numero % 5 === 0) {
+    if (Number(numero) % 5 === 0) {
         return true
     }
     return false
@@ -10,7 +10,7 @@ function verificarMultiploDeCinco(numero) {
 //Seção 2 - VerificacaoIdade (If Tradicional)
 function verificarIdadeMaisDezoito(idade) {
 
-    if (idade >= 18) {
+    if (Number(idade) >= 18) {
         return true
     } else {
         return false
@@ -20,9 +20,9 @@ function verificarIdadeMaisDezoito(idade) {
 //Seção 3 - SinalNumero (If Composto)
 
 function verificarSinalNumero(numInt) {
-    if (numInt > 0) {
+    if (Number(numInt) > 0) {
         return "+"
-    } else if (numInt < 0) {
+    } else if (Number(numInt) < 0) {
         return "-"
     } else {
         return 0
@@ -31,14 +31,14 @@ function verificarSinalNumero(numInt) {
 
 //Seção 4 - ImparPar (Ternário)
 function verificarImparOuPar(num) {
-    let res = (!(num % 2) ? "Par" : "Impar")
+    let res = (!(Number(num) % 2) ? "Par" : "Impar")
     return res
 }
 
 
 //Seção 5 - TerminoMes (Switch)
 function verificarTerminoMes(mes) {
-    switch (mes) {
+    switch (Number(mes)) {
         case 1:
         case 3:
         case 5:
