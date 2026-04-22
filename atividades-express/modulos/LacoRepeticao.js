@@ -46,7 +46,7 @@ function contagemCemFor() {
 
 // Seção 4 - (ForEach)
 function exibirPessoas(pessoa1, pessoa2, pessoa3, pessoa4) {
-    const pessoas = [pessoa1, pessoa2, pessoa3, pessoa4]
+    let pessoas = [pessoa1, pessoa2, pessoa3, pessoa4]
     let listaPessoas = []
 
     pessoas.forEach(function (pessoa) {
