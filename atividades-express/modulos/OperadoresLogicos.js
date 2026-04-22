@@ -1,6 +1,6 @@
 // Seção 1 - Operador "E" (&&)
 function aprovarNota2(nota, frequencia) {
-  if (nota >= 7 && frequencia >= 75) {
+  if (Number(nota) >= 7 && Number(frequencia) >= 75) {
     return true;
   } else {
     return false;
